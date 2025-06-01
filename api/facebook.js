@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiUrl = \`https://facebook-profile-picture-viewer.p.rapidapi.com/?fburl=\${encodeURIComponent(link)}\`;
+    const apiUrl = `https://facebook-profile-picture-viewer.p.rapidapi.com/?fburl=${encodeURIComponent(link)}`;
 
     const response = await fetch(apiUrl, {
       method: 'GET',
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         'User-Agent': 'Dart/3.5 (dart:io)',
         'Accept-Encoding': 'gzip',
         'x-rapidapi-host': 'facebook-profile-picture-viewer.p.rapidapi.com',
-        'x-rapidapi-key': process.env.RAPIDAPI_KEY
+        'x-rapidapi-key': 'y76eBTWokKmshCLPwQKtW1hkvASip13jtwGjsnHhlrq4pdoJQy'
       }
     });
 
