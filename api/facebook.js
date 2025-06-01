@@ -1,5 +1,3 @@
-// api/facebook.js
-
 export default async function handler(req, res) {
   const { link } = req.query;
 
@@ -21,7 +19,15 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    res.status(response.status).json(data);
+
+    if (Array.isArray(data) && data.length > 0) {
+      // Pick the last item (usually the best quality image)
+      const lastImage = data[data.length - 1];
+      res.status(200).json({ profile_picture_url: lastImage });
+    } else {
+      res.status(200).json({ profile_picture_url: null, raw_response: data });
+    }
+
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
